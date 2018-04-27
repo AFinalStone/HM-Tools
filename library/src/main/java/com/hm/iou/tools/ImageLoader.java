@@ -13,9 +13,9 @@ import java.io.File;
 /**
  * Created by SHI on 2016/9/10 15:36
  */
-public class ImageLoaderUtil {
+public class ImageLoader {
 
-    private static ImageLoaderUtil imageLoaderUtil;
+    private static ImageLoader INSTANCE;
 
     //为了加载本地drawable和mipmap目录下面的资源
     public static final String ANDROID_RESOURCE = "android.resource://";
@@ -24,14 +24,14 @@ public class ImageLoaderUtil {
     private Context context;
     private Picasso picasso;
 
-    public synchronized static ImageLoaderUtil getInstance(Context context) {
-        if (imageLoaderUtil == null) {
-            imageLoaderUtil = new ImageLoaderUtil(context);
+    public synchronized static ImageLoader getInstance(Context context) {
+        if (INSTANCE == null) {
+            INSTANCE = new ImageLoader(context);
         }
-        return imageLoaderUtil;
+        return INSTANCE;
     }
 
-    public ImageLoaderUtil(Context context) {
+    public ImageLoader(Context context) {
         this.context = context.getApplicationContext();
         initImageLoader();
     }
