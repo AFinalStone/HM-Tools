@@ -28,16 +28,15 @@ import java.util.List;
  */
 public class SystemUtil {
 
-
     /**
      * 获取当前应用版本号
      **/
-    public static int getCurrentAppVersionCode(Context mContext) {
+    public static int getCurrentAppVersionCode(Context context) {
         // 获得包管理器，注意，整个android手机，共用一个包管理器
-        PackageManager packageManager = mContext.getPackageManager();
+        PackageManager packageManager = context.getPackageManager();
         PackageInfo packageInfo = null;
         try {
-            packageInfo = packageManager.getPackageInfo(mContext.getPackageName(), 0);
+            packageInfo = packageManager.getPackageInfo(context.getPackageName(), 0);
         } catch (NameNotFoundException e) {
             e.printStackTrace();
         }
@@ -49,7 +48,7 @@ public class SystemUtil {
     }
 
     /**
-     * 启动薄荷App
+     * 根据包名启动App
      *
      * @param context
      */
@@ -60,6 +59,19 @@ public class SystemUtil {
         } else {
             Toast.makeText(context, "当前手机没有安装此应用", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    /**
+     * 通过浏览器打开链接
+     *
+     * @param context 设备上下文
+     * @param url     链接地址
+     */
+    private void openUrlBySystemWebBrowser(Context context, String url) {
+        Intent intent = new Intent();
+        intent.setData(Uri.parse(url));//Url 就是你要打开的网址
+        intent.setAction(Intent.ACTION_VIEW);
+        context.startActivity(intent); //启动浏览器
     }
 
     /**
@@ -93,12 +105,12 @@ public class SystemUtil {
     /**
      * 获取当前应用版包名
      **/
-    public static String getCurrentAppPackageName(Context mContext) {
+    public static String getCurrentAppPackageName(Context context) {
         // 获得包管理器，注意，整个android手机，共用一个包管理器
-        PackageManager packageManager = mContext.getPackageManager();
+        PackageManager packageManager = context.getPackageManager();
         PackageInfo packageInfo = null;
         try {
-            packageInfo = packageManager.getPackageInfo(mContext.getPackageName(), 0);
+            packageInfo = packageManager.getPackageInfo(context.getPackageName(), 0);
         } catch (NameNotFoundException e) {
             e.printStackTrace();
         }
@@ -112,12 +124,12 @@ public class SystemUtil {
     /**
      * 获取当前应用版本名
      **/
-    public static String getCurrentAppVersionName(Context mContext) {
+    public static String getCurrentAppVersionName(Context context) {
         // 获得包管理器，注意，整个android手机，共用一个包管理器
-        PackageManager packageManager = mContext.getPackageManager();
+        PackageManager packageManager = context.getPackageManager();
         PackageInfo packageInfo = null;
         try {
-            packageInfo = packageManager.getPackageInfo(mContext.getPackageName(), 0);
+            packageInfo = packageManager.getPackageInfo(context.getPackageName(), 0);
         } catch (NameNotFoundException e) {
             e.printStackTrace();
         }
@@ -129,7 +141,7 @@ public class SystemUtil {
     }
 
     /**
-     * 获取当前应用版本名
+     * 获取当前应用API版本名
      **/
     public static int getCurrentOSVersion() {
         /*获取当前系统的android版本号*/
@@ -137,10 +149,11 @@ public class SystemUtil {
         return version;
     }
 
+
     /**
-     * SD卡是否存在
+     * 获取SDK卡的根目录
      **/
-    public static File whetherExistSDcard() {
+    private static File getExternalStorageDirectory() {
         // 判断sd卡是否存在
         if (Environment.getExternalStorageState().equals(
                 Environment.MEDIA_MOUNTED)) {
@@ -156,8 +169,8 @@ public class SystemUtil {
      */
     public static String getDownloadFilePath(String fileName) {
         String downDirectory = null;
-        String FolderName = "Download";
-        File pathSDcard = whetherExistSDcard();
+        String FolderName = Environment.DIRECTORY_DOWNLOADS;
+        File pathSDcard = getExternalStorageDirectory();
         if (pathSDcard != null) {
             //创建文件夹
             if (createFolder(FolderName)) {
@@ -174,8 +187,8 @@ public class SystemUtil {
      */
     public static String getDownloadFilePath() {
         String downDirectory = null;
-        String FolderName = "Download";
-        File pathSDcard = whetherExistSDcard();
+        String FolderName = Environment.DIRECTORY_DOWNLOADS;
+        File pathSDcard = getExternalStorageDirectory();
         if (pathSDcard != null) {
             //创建文件夹
             if (createFolder(FolderName)) {
@@ -192,7 +205,7 @@ public class SystemUtil {
      */
     public static boolean createFolder(String FolderName) {
 
-        File pathSDcard = whetherExistSDcard();
+        File pathSDcard = getExternalStorageDirectory();
         if (pathSDcard != null) {
             File file = new File(pathSDcard.toString() + File.separator + FolderName);
 
