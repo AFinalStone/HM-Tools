@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningServiceInfo;
 import android.content.ActivityNotFoundException;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -61,17 +62,37 @@ public class SystemUtil {
         }
     }
 
+//    /**
+//     * 调用第三方浏览器打开
+//     *
+//     * @param context 设备上下文
+//     * @param url     链接地址
+//     */
+//    public static void openWebBrowser(Context context, String url) {
+//        Intent intent = new Intent();
+//        intent.setData(Uri.parse(url));//Url 就是你要打开的网址
+//        intent.setAction(Intent.ACTION_VIEW);
+//        context.startActivity(intent); //启动浏览器
+//    }
+
     /**
-     * 通过浏览器打开链接
+     * 调用第三方浏览器打开
      *
-     * @param context 设备上下文
-     * @param url     链接地址
+     * @param context
+     * @param url     要浏览的资源地址
      */
-    private void openUrlBySystemWebBrowser(Context context, String url) {
-        Intent intent = new Intent();
-        intent.setData(Uri.parse(url));//Url 就是你要打开的网址
+    public static void openWebBrowser(Context context, String url) {
+        final Intent intent = new Intent();
         intent.setAction(Intent.ACTION_VIEW);
-        context.startActivity(intent); //启动浏览器
+        intent.setData(Uri.parse(url));
+        // 注意此处的判断intent.resolveActivity()可以返回显示该Intent的Activity对应的组件名
+        // 官方解释 : Name of the component implementing an activity that can display the intent
+        if (intent.resolveActivity(context.getPackageManager()) != null) {
+            final ComponentName componentName = intent.resolveActivity(context.getPackageManager());
+            context.startActivity(Intent.createChooser(intent, "请选择浏览器"));
+        } else {
+            Toast.makeText(context.getApplicationContext(), "请下载浏览器", Toast.LENGTH_SHORT).show();
+        }
     }
 
     /**
