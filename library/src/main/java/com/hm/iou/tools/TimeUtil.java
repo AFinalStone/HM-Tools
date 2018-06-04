@@ -39,6 +39,17 @@ public class TimeUtil {
     }
 
     /**
+     * 把date转化成mDateFormat格式的时间字符串返回
+     *
+     * @param date
+     * @return
+     */
+    public String getTimeInString(Date date) {
+        return mDateFormat.format(date);
+    }
+
+
+    /**
      * 把String类型的时间转换成long类型的时间
      *
      * @param time
@@ -48,6 +59,40 @@ public class TimeUtil {
     public long getTimeInLong(String time) throws ParseException {
         Date date = mDateFormat.parse(time);
         return date.getTime();
+    }
+
+    /**
+     * 把date转换成long类型的时间
+     *
+     * @param date
+     * @return
+     * @throws ParseException
+     */
+    public long getTimeInLong(Date date) throws ParseException {
+        return date.getTime();
+    }
+
+    /**
+     * 把字符串time转换成Date返回
+     *
+     * @param time
+     * @return
+     * @throws ParseException
+     */
+    public Date getTimeInDate(String time) throws ParseException {
+        Date date = mDateFormat.parse(time);
+        return date;
+    }
+
+    /**
+     * 把timeInMillis转化成Date返回
+     *
+     * @param timeInMillis
+     * @return
+     * @throws ParseException
+     */
+    public Date getTimeInDate(long timeInMillis) {
+        return new Date(timeInMillis);
     }
 
     /**
