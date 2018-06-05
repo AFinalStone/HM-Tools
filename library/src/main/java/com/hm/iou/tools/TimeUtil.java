@@ -1,12 +1,8 @@
 package com.hm.iou.tools;
 
-import android.content.Context;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.TimeZone;
 
 /**
  * @author syl
@@ -14,18 +10,14 @@ import java.util.TimeZone;
  */
 public class TimeUtil {
 
-    private static TimeUtil INSTANCE;
     private SimpleDateFormat mDateFormat;
 
-    public TimeUtil(String dateFormat) {
+    private TimeUtil(String dateFormat) {
         this.mDateFormat = new SimpleDateFormat(dateFormat);
     }
 
-    public synchronized static TimeUtil getInstance(SimpleDateFormatEnum dateFormatEnum) {
-        if (INSTANCE == null) {
-            INSTANCE = new TimeUtil(dateFormatEnum.getType());
-        }
-        return INSTANCE;
+    public static TimeUtil getInstance(SimpleDateFormatEnum dateFormatEnum) {
+        return new TimeUtil(dateFormatEnum.getType());
     }
 
     /**
