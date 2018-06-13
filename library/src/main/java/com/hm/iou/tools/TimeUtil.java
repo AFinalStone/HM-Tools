@@ -20,6 +20,10 @@ public class TimeUtil {
         return new TimeUtil(dateFormatEnum.getType());
     }
 
+    public static TimeUtil getInstance(String dateTimeFormat) {
+        return new TimeUtil(dateTimeFormat);
+    }
+
     /**
      * 把timeInMillis转化成DateFormat格式的时间字符串返回
      *
