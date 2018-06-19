@@ -26,7 +26,7 @@ public class KeyboardUtil {
                 imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
 
             }
-        }, 200);
+        }, 300);
     }
 
     /**
