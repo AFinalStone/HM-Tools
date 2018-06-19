@@ -83,10 +83,10 @@ public class ToastUtil {
         if (TextUtils.isEmpty(text)) return;
         if (null != mToast) {
             mToast.setText(text);
-            mToast.setGravity(Gravity.BOTTOM, 0, 0);
+            mToast.setGravity(Gravity.BOTTOM, 0, 100);
         } else {
             mToast = Toast.makeText(context, text, duration);
-            mToast.setGravity(Gravity.BOTTOM, 0, 0);
+            mToast.setGravity(Gravity.BOTTOM, 0, 100);
         }
         mToast.show();
     }
@@ -95,7 +95,7 @@ public class ToastUtil {
      * 显示带有图片的toast
      *
      * @param context
-     * @param message toast文本
+     * @param message  toast文本
      * @param imgResId
      * @return
      */
@@ -117,7 +117,7 @@ public class ToastUtil {
      * 显示带有成功或者失败图片的toast
      *
      * @param context
-     * @param message toast文本
+     * @param message   toast文本
      * @param isSuccess 成功或者失败
      */
     public static void showStatusView(Context context, String message, boolean isSuccess) {
