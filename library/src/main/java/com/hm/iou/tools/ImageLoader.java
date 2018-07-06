@@ -52,6 +52,18 @@ public class ImageLoader {
         }
     }
 
+    public void displayImage(String imageUrl, ImageView imageView, int errorResId) {
+        picasso.load(imageUrl).error(errorResId).into(imageView);
+    }
+
+    public void displayImage(String imageUrl, ImageView imageView, int errorResId, Callback callback) {
+        picasso.load(imageUrl).error(errorResId).into(imageView, callback);
+    }
+
+    public void displayImage(String imageUrl, ImageView imageView, int errorResId, Transformation transformation) {
+        picasso.load(imageUrl).transform(transformation).error(errorResId).into(imageView);
+    }
+
     public void displayImage(String imageUrl, ImageView imageView, int placeholderResId, int errorResId, Callback callback) {
         if (!StringUtil.isEmpty(imageUrl)) {
             picasso.load(imageUrl).placeholder(placeholderResId).error(errorResId).into(imageView, callback);
@@ -67,8 +79,17 @@ public class ImageLoader {
     public void displayImage(Uri imageUrl, ImageView imageView) {
         picasso.load(imageUrl).into(imageView);
     }
+
     public void displayImage(Uri imageUrl, ImageView imageView, int placeholderResId, int errorResId) {
         picasso.load(imageUrl).placeholder(placeholderResId).error(errorResId).into(imageView);
+    }
+
+    public void displayImage(Uri imageUrl, ImageView imageView, int errorResId) {
+        picasso.load(imageUrl).error(errorResId).into(imageView);
+    }
+
+    public void displayImage(Uri imageUrl, ImageView imageView, int errorResId, Callback callback) {
+        picasso.load(imageUrl).error(errorResId).into(imageView, callback);
     }
 
     public void displayImage(File file, ImageView imageView) {
