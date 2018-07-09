@@ -37,7 +37,7 @@ public class ImageLoader {
     }
 
     private void initImageLoader() {
-        picasso = Picasso.with(context);
+        picasso = Picasso.get();
     }
 
     public void displayImage(String imageUrl, ImageView imageView) {

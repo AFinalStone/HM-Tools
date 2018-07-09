@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 
+import com.hm.iou.tools.ImageLoader;
 import com.hm.iou.tools.MoneyFormatUtil;
 import com.hm.iou.tools.ToastUtil;
 
@@ -46,5 +48,9 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        ImageView imageView = (ImageView) findViewById(R.id.iv_tools);
+        ImageLoader.getInstance(this).displayImage("https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2118739199,3378602431&fm=27&gp=0.jpg", imageView);
+
     }
 }
