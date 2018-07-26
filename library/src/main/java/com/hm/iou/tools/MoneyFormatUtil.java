@@ -93,10 +93,11 @@ public class MoneyFormatUtil {
         if (!amountLong.toString().matches(CURRENCY_FEN_REGEX)) {
             throw new Exception("金额格式有误");
         }
-
+        //正数
         int flag = 0;
         String amString = amountLong.toString();
         if (amString.charAt(0) == '-') {
+            //负数
             flag = 1;
             amString = amString.substring(1);
         }
@@ -113,7 +114,12 @@ public class MoneyFormatUtil {
                 }
                 result.append(intString.substring(intString.length() - i, intString.length() - i + 1));
             }
-            result.reverse().append(".").append(amString.substring(amString.length() - 2));
+            String intEndString = amString.substring(amString.length() - 2);
+            if ("00".equals(intEndString)) {
+                result.reverse();
+            } else {
+                result.reverse().append(".").append(intEndString);
+            }
         }
         if (flag == 1) {
             return "-" + result.toString();

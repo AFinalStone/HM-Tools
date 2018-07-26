@@ -1,6 +1,5 @@
 package com.hm.iou.tools.demo;
 
-import android.Manifest;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -14,6 +13,7 @@ import com.hm.iou.tools.ToastUtil;
 public class MainActivity extends AppCompatActivity {
 
     EditText mEtAmount;
+    EditText mEtFToY;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,5 +52,25 @@ public class MainActivity extends AppCompatActivity {
         ImageView imageView = (ImageView) findViewById(R.id.iv_tools);
         ImageLoader.getInstance(this).displayImage("https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2118739199,3378602431&fm=27&gp=0.jpg", imageView);
 
+        mEtFToY = findViewById(R.id.et_test_fToY);
+        findViewById(R.id.btn_test_fToY).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    String amount = mEtFToY.getText().toString();
+                    long fen = Long.parseLong(amount);
+                    String yuan = null;
+                    try {
+                        yuan = MoneyFormatUtil.changeF2Y(fen);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    System.out.println(yuan);
+                    ToastUtil.showMessage(MainActivity.this, yuan);
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 }
