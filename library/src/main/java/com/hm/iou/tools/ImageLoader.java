@@ -26,13 +26,13 @@ public class ImageLoader {
 
     public synchronized static ImageLoader getInstance(Context context) {
         if (INSTANCE == null) {
-            INSTANCE = new ImageLoader(context);
+            INSTANCE = new ImageLoader(context.getApplicationContext());
         }
         return INSTANCE;
     }
 
-    public ImageLoader(Context context) {
-        this.context = context.getApplicationContext();
+    private ImageLoader(Context context) {
+        this.context = context;
         initImageLoader();
     }
 

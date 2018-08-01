@@ -17,13 +17,13 @@ public class ClipUtil {
     private Context mContext;
     private static ClipUtil clipUtil;
 
-    public ClipUtil(Context context) {
+    private ClipUtil(Context context) {
         this.mContext = context;
     }
 
     public static ClipUtil getInstance(Context context) {
         if (clipUtil == null) {
-            clipUtil = new ClipUtil(context);
+            clipUtil = new ClipUtil(context.getApplicationContext());
         }
         return clipUtil;
     }
