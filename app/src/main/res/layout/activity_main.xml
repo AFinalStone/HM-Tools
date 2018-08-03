@@ -47,4 +47,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="测试分转元" />
+
+    <Button
+        android:id="@+id/btn_test_click"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="测试防止重复点击事件" />
 </LinearLayout>

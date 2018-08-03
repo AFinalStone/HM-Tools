@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import com.hm.iou.tools.ImageLoader;
 import com.hm.iou.tools.MoneyFormatUtil;
 import com.hm.iou.tools.ToastUtil;
+import com.hm.iou.tools.ViewConcurrencyUtil;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -69,6 +70,14 @@ public class MainActivity extends AppCompatActivity {
                     ToastUtil.showMessage(MainActivity.this, yuan);
                 } catch (NumberFormatException e) {
                     e.printStackTrace();
+                }
+            }
+        });
+        findViewById(R.id.btn_test_click).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (ViewConcurrencyUtil.isFastClick()) {
+                    ToastUtil.showMessage(MainActivity.this, "onClick:被点击");
                 }
             }
         });
