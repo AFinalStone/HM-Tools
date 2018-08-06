@@ -1,5 +1,6 @@
 package com.hm.iou.tools.demo;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -79,6 +80,12 @@ public class MainActivity extends AppCompatActivity {
                 if (ViewConcurrencyUtil.isFastClick()) {
                     ToastUtil.showMessage(MainActivity.this, "onClick:被点击");
                 }
+            }
+        });
+        findViewById(R.id.btn_contacts).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, ContactsActivity.class));
             }
         });
     }

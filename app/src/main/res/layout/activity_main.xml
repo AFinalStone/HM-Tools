@@ -53,4 +53,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="测试防止重复点击事件" />
+
+    <Button
+        android:id="@+id/btn_contacts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="打开手机通讯录" />
 </LinearLayout>
