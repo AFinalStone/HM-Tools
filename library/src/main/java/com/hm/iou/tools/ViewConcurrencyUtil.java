@@ -35,6 +35,7 @@ public class ViewConcurrencyUtil {
         Long t = (Long) view.getTag(R.id.iv_toast_icon);
         if (t != null && (System.currentTimeMillis() - t) < MIN_CLICK_DELAY_TIME) {
             flag = true;
+        } else {
             view.setTag(R.id.iv_toast_icon, System.currentTimeMillis());
         }
         return flag;
