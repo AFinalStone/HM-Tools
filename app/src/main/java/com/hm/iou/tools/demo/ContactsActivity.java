@@ -1,11 +1,8 @@
 package com.hm.iou.tools.demo;
 
-import android.content.ContentResolver;
 import android.content.Intent;
-import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -49,47 +46,44 @@ public class ContactsActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 if (data != null) {
                     Uri uri = data.getData();
-                    String[] contact = getPhoneContacts(uri);
-                    if (contact != null) {
-                        if (contact[0] != null) {
-                            String name = contact[0];//姓名
-                            Log.i("联系人名称", name);
-                            ToastUtil.showMessage(this, "联系人名称：" + name);
-                        }
-                        if (contact[1] != null) {
-                            String number = contact[1];//手机号
-                            Log.i("联系人手机号", number);
-                            ToastUtil.showMessage(this, "联系人手机号：" + number);
-                        }
+                    String name = PhoneContactsUtil.getPhoneContactsName(ContactsActivity.this, uri);
+                    if (name != null) {
+                        Log.i("联系人名称", name);
+                        ToastUtil.showMessage(this, "联系人名称：" + name);
+                    }
+                    String number = PhoneContactsUtil.getPhoneContactsNumber(ContactsActivity.this, uri);
+                    if (number != null) {
+                        Log.i("联系人手机号", number);
+                        ToastUtil.showMessage(this, "联系人手机号：" + number);
                     }
                 }
             }
         }
     }
 
-    /**
-     * 读取联系人信息
-     *
-     * @param uri
-     */
-    private String[] getPhoneContacts(Uri uri) {
-        String[] contact = new String[2];
-        //得到ContentResolver对象
-        try {
-            ContentResolver cr = getContentResolver();
-            Cursor cursor = cr.query(uri, null, null, null, null);
-            if (cursor != null && cursor.moveToFirst()) {
-                //取得联系人姓名
-                int nameFieldColumnIndex = cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME);
-                contact[0] = cursor.getString(nameFieldColumnIndex);
-                contact[1] = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-                cursor.close();
-            }
-        } catch (Exception e) {
-
-        }
-        return contact;
-    }
+//    /**
+//     * 读取联系人信息
+//     *
+//     * @param uri
+//     */
+//    private String[] getPhoneContacts(Uri uri) {
+//        String[] contact = new String[2];
+//        //得到ContentResolver对象
+//        try {
+//            ContentResolver cr = getContentResolver();
+//            Cursor cursor = cr.query(uri, null, null, null, null);
+//            if (cursor != null && cursor.moveToFirst()) {
+//                //取得联系人姓名
+//                int nameFieldColumnIndex = cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME);
+//                contact[0] = cursor.getString(nameFieldColumnIndex);
+//                contact[1] = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+//                cursor.close();
+//            }
+//        } catch (Exception e) {
+//
+//        }
+//        return contact;
+//    }
 
 //    private void getContactsName(Uri uri) {
 //        Cursor c = managedQuery(uri, null, null, null, null);

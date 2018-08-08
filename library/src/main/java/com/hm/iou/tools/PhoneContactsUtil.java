@@ -1,7 +1,11 @@
 package com.hm.iou.tools;
 
 import android.app.Activity;
+import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.provider.ContactsContract;
 
 /**
@@ -54,6 +58,52 @@ public class PhoneContactsUtil {
     public static void openPhoneContactsByElecEmail(final Activity activity, final int requestCode) {
         Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.CommonDataKinds.Email.CONTENT_URI);
         activity.startActivityForResult(intent, requestCode);
+    }
+
+    /**
+     * 根据uri获取通讯录姓名
+     *
+     * @param uri
+     * @return
+     */
+    public static String getPhoneContactsName(Context context, Uri uri) {
+        String name = null;
+        //得到ContentResolver对象
+        try {
+            ContentResolver cr = context.getContentResolver();
+            Cursor cursor = cr.query(uri, null, null, null, null);
+            if (cursor != null && cursor.moveToFirst()) {
+                //取得联系人姓名
+                name = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+                cursor.close();
+            }
+        } catch (Exception e) {
+
+        }
+        return name;
+    }
+
+    /**
+     * 获取用户手机号
+     *
+     * @param uri
+     * @return
+     */
+    public static String getPhoneContactsNumber(Context context, Uri uri) {
+        String number = null;
+        //得到ContentResolver对象
+        try {
+            ContentResolver cr = context.getContentResolver();
+            Cursor cursor = cr.query(uri, null, null, null, null);
+            if (cursor != null && cursor.moveToFirst()) {
+                //取得联系人姓名
+                number = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                cursor.close();
+            }
+        } catch (Exception e) {
+
+        }
+        return number;
     }
 
 
