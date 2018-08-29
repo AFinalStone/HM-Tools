@@ -66,7 +66,7 @@ public class ToastUtil {
             mToast.cancel();
             mToast = null;
         }
-        mToast = Toast.makeText(context, text, Toast.LENGTH_LONG);
+        mToast = Toast.makeText(context.getApplicationContext(), text, Toast.LENGTH_LONG);
         mHandler.postDelayed(mPendingDismissRunnable, duration);
         mToast.show();
     }
@@ -85,7 +85,7 @@ public class ToastUtil {
             mToast.setText(text);
             mToast.setGravity(Gravity.BOTTOM, 0, 100);
         } else {
-            mToast = Toast.makeText(context, text, duration);
+            mToast = Toast.makeText(context.getApplicationContext(), text, duration);
             mToast.setGravity(Gravity.BOTTOM, 0, 100);
         }
         mToast.show();
@@ -105,7 +105,7 @@ public class ToastUtil {
         tv.setText(TextUtils.isEmpty(message) ? "" : message);
         ImageView iv = view.findViewById(R.id.iv_toast_icon);
         iv.setImageResource(imgResId);
-        Toast toast = new Toast(context);
+        Toast toast = new Toast(context.getApplicationContext());
         toast.setView(view);
         toast.setGravity(Gravity.CENTER, 0, 0);
         toast.setDuration(Toast.LENGTH_SHORT);
