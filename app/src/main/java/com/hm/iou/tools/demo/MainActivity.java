@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.hm.iou.tools.ImageLoader;
+import com.hm.iou.tools.KeyboardUtil;
 import com.hm.iou.tools.MoneyFormatUtil;
 import com.hm.iou.tools.ToastUtil;
 import com.hm.iou.tools.ViewConcurrencyUtil;
@@ -88,5 +89,12 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, ContactsActivity.class));
             }
         });
+        findViewById(R.id.btn_showKeyboard).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                KeyboardUtil.toggleKeyboard(MainActivity.this);
+            }
+        });
+
     }
 }

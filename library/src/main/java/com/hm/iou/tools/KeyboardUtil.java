@@ -9,28 +9,30 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 /**
- * Created by hjy on 18/4/27.<br>
+ * @author syl
+ * @time 2018/9/4 下午6:43
  */
 
 public class KeyboardUtil {
 
     /**
-     * 显示软键盘的状态
+     * 切换软键盘的状态
      */
-    public static void openKeyboard(final Activity activity) {
+    public static void toggleKeyboard(final Activity activity) {
 
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                try {
-                    InputMethodManager imm = (InputMethodManager) activity.getApplication().getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.showSoftInputFromInputMethod(activity.getWindow().getDecorView().getWindowToken(), 0);
-                } catch (Exception e) {
-
+                InputMethodManager imm = (InputMethodManager) activity.getApplication().getSystemService(Context.INPUT_METHOD_SERVICE);
+                //imm.showSoftInputFromInputMethod(activity.getWindow().getDecorView().getWindowToken(), 0);
+                //切换软键盘的显示与隐藏
+                if (imm != null) {
+                    imm.toggleSoftInputFromWindow(activity.getWindow().getDecorView().getWindowToken(), 0, InputMethodManager.HIDE_NOT_ALWAYS);
                 }
             }
         }, 300);
+
     }
 
     /**
@@ -41,7 +43,9 @@ public class KeyboardUtil {
             @Override
             public void run() {
                 InputMethodManager imm = (InputMethodManager) view.getContext().getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.showSoftInput(view, InputMethodManager.SHOW_FORCED);
+                if (imm != null) {
+                    imm.showSoftInput(view, InputMethodManager.SHOW_FORCED);
+                }
             }
         }, 300);
     }
