@@ -1,6 +1,5 @@
 package com.hm.iou.tools;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
 import android.util.DisplayMetrics;

@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import com.hm.iou.tools.ImageLoader;
 import com.hm.iou.tools.KeyboardUtil;
 import com.hm.iou.tools.MoneyFormatUtil;
+import com.hm.iou.tools.StatusBarUtil;
 import com.hm.iou.tools.ToastUtil;
 import com.hm.iou.tools.ViewConcurrencyUtil;
 
@@ -93,6 +94,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 KeyboardUtil.toggleKeyboard(MainActivity.this);
+            }
+        });
+        findViewById(R.id.btn_getStatusBarHeight).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int height = StatusBarUtil.getStatusBarHeight(getWindow());
+                ToastUtil.showMessage(MainActivity.this, "getWindow状态栏高度==" + height);
+                height = StatusBarUtil.getStatusBarHeight(MainActivity.this);
+                ToastUtil.showMessage(MainActivity.this, "getRes状态栏高度==" + height);
             }
         });
 

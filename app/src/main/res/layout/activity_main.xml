@@ -1,69 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.hm.iou.tools.demo.MainActivity">
 
-    <Button
-        android:id="@+id/btn_test1"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Toast文本" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="com.hm.iou.tools.demo.MainActivity">
 
-    <Button
-        android:id="@+id/btn_test2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Toast图片" />
+        <Button
+            android:id="@+id/btn_test1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Toast文本" />
 
-    <EditText
-        android:id="@+id/et_test_upper"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="numberSigned" />
+        <Button
+            android:id="@+id/btn_test2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Toast图片" />
 
-    <Button
-        android:id="@+id/btn_showKeyboard"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="切换键盘状态" />
+        <EditText
+            android:id="@+id/et_test_upper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberSigned" />
 
-    <Button
-        android:id="@+id/btn_test3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="测试大写" />
+        <Button
+            android:id="@+id/btn_showKeyboard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="切换键盘状态" />
 
-    <ImageView
-        android:id="@+id/iv_tools"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/btn_test3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="测试大写" />
 
-    <EditText
-        android:id="@+id/et_test_fToY"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="numberSigned" />
+        <ImageView
+            android:id="@+id/iv_tools"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
-    <Button
-        android:id="@+id/btn_test_fToY"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="测试分转元" />
+        <EditText
+            android:id="@+id/et_test_fToY"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberSigned" />
 
-    <Button
-        android:id="@+id/btn_test_click"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="测试防止重复点击事件" />
+        <Button
+            android:id="@+id/btn_test_fToY"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="测试分转元" />
 
-    <Button
-        android:id="@+id/btn_contacts"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="打开手机通讯录" />
+        <Button
+            android:id="@+id/btn_test_click"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="测试防止重复点击事件" />
+
+        <Button
+            android:id="@+id/btn_contacts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="打开手机通讯录" />
+
+        <Button
+            android:id="@+id/btn_getStatusBarHeight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="获取状态栏高度" />
 
 
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>
