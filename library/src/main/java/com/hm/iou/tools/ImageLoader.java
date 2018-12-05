@@ -2,6 +2,7 @@ package com.hm.iou.tools;
 
 import android.content.Context;
 import android.net.Uri;
+import android.text.TextUtils;
 import android.widget.ImageView;
 
 import com.squareup.picasso.Callback;
@@ -21,7 +22,6 @@ public class ImageLoader {
     public static final String ANDROID_RESOURCE = "android.resource://";
     public static final String FOREWARD_SLASH = "/";
 
-    private Context context;
     private Picasso picasso;
 
     public synchronized static ImageLoader getInstance(Context context) {
@@ -32,7 +32,6 @@ public class ImageLoader {
     }
 
     private ImageLoader(Context context) {
-        this.context = context;
         initImageLoader(context);
     }
 
@@ -41,19 +40,21 @@ public class ImageLoader {
     }
 
     public void displayImage(String imageUrl, ImageView imageView) {
-        if (!StringUtil.isEmpty(imageUrl)) {
+        if (!TextUtils.isEmpty(imageUrl)) {
             picasso.load(imageUrl).into(imageView);
         }
     }
 
     public void displayImage(String imageUrl, ImageView imageView, int placeholderResId, int errorResId) {
-        if (!StringUtil.isEmpty(imageUrl)) {
+        if (!TextUtils.isEmpty(imageUrl)) {
             picasso.load(imageUrl).placeholder(placeholderResId).error(errorResId).into(imageView);
         }
     }
 
     public void displayImage(String imageUrl, ImageView imageView, int errorResId) {
-        picasso.load(imageUrl).error(errorResId).into(imageView);
+        if (!TextUtils.isEmpty(imageUrl)) {
+            picasso.load(imageUrl).error(errorResId).into(imageView);
+        }
     }
 
     public void displayImage(String imageUrl, ImageView imageView, int errorResId, Callback callback) {
@@ -65,13 +66,13 @@ public class ImageLoader {
     }
 
     public void displayImage(String imageUrl, ImageView imageView, int placeholderResId, int errorResId, Callback callback) {
-        if (!StringUtil.isEmpty(imageUrl)) {
+        if (!TextUtils.isEmpty(imageUrl)) {
             picasso.load(imageUrl).placeholder(placeholderResId).error(errorResId).into(imageView, callback);
         }
     }
 
     public void displayImage(String imageUrl, ImageView imageView, int placeholderResId, int errorResId, Transformation transformation) {
-        if (!StringUtil.isEmpty(imageUrl)) {
+        if (!TextUtils.isEmpty(imageUrl)) {
             picasso.load(imageUrl).transform(transformation).placeholder(placeholderResId).error(errorResId).into(imageView);
         }
     }
@@ -114,13 +115,13 @@ public class ImageLoader {
     }
 
     public void fetchImage(String imageUrl) {
-        if (!StringUtil.isEmpty(imageUrl)) {
+        if (!TextUtils.isEmpty(imageUrl)) {
             picasso.load(imageUrl).fetch();
         }
     }
 
     public void fetchImage(String imageUrl, Callback callback) {
-        if (!StringUtil.isEmpty(imageUrl)) {
+        if (!TextUtils.isEmpty(imageUrl)) {
             picasso.load(imageUrl).fetch(callback);
         }
     }
