@@ -33,11 +33,11 @@ public class ImageLoader {
 
     private ImageLoader(Context context) {
         this.context = context;
-        initImageLoader();
+        initImageLoader(context);
     }
 
-    private void initImageLoader() {
-        picasso = Picasso.get();
+    private void initImageLoader(Context context) {
+        picasso = new Picasso.Builder(context).build();
     }
 
     public void displayImage(String imageUrl, ImageView imageView) {
