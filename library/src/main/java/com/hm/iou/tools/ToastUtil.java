@@ -59,7 +59,7 @@ public class ToastUtil {
      * @param duration 持续时间, 毫秒
      */
     public static void showMessage(Context context, CharSequence text, int duration) {
-        if (context == null)
+        if (context == null || TextUtils.isEmpty(text))
             return;
         mHandler.removeCallbacks(mPendingDismissRunnable);
         if (mToast != null) {
