@@ -46,7 +46,7 @@
         <ImageView
             android:id="@+id/iv_tools"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="80dp" />
 
         <EditText
             android:id="@+id/et_test_fToY"

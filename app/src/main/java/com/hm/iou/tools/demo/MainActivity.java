@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn_test_click).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (ViewConcurrencyUtil.isFastClick()) {
+                if (!ViewConcurrencyUtil.isFastClicks()) {
                     ToastUtil.showMessage(MainActivity.this, "onClick:被点击");
                 }
             }
