@@ -14,13 +14,19 @@ public class ViewConcurrencyUtil {
     private static final int MIN_CLICK_DELAY_TIME = 1000;
     private static long lastClickTime;
 
-    public static boolean isFastClick() {
+    /**
+     * 是否是快速点击，所有按钮共用一个
+     *
+     * @return
+     */
+    public static boolean isFastClicks() {
         boolean flag = false;
         long curClickTime = System.currentTimeMillis();
-        if ((curClickTime - lastClickTime) >= MIN_CLICK_DELAY_TIME) {
+        if ((curClickTime - lastClickTime) < MIN_CLICK_DELAY_TIME) {
             flag = true;
+        } else {
+            lastClickTime = curClickTime;
         }
-        lastClickTime = curClickTime;
         return flag;
     }
 
