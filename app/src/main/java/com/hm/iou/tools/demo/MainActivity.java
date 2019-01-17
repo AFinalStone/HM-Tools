@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn_test2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ToastUtil.showStatusView(MainActivity.this, "加载成功", true);
+                ToastUtil.showStatusView(MainActivity.this, "加载成功");
             }
         });
 
