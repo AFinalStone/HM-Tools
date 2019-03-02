@@ -79,5 +79,17 @@
             android:text="获取状态栏高度" />
 
 
+        <Button
+            android:id="@+id/btn_clip1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="获取剪切板内容" />
+
+        <Button
+            android:id="@+id/btn_clip2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="设置剪切板内容" />
+
     </LinearLayout>
 </ScrollView>

@@ -65,4 +65,26 @@ public class ClipUtil {
 //    public static ClipData newRawUri(CharSequence label, Uri uri)
 
 
+    public static CharSequence getTextFromClipboard(Context context) {
+        ClipboardManager clipboardManager = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+        //判断剪切版时候有内容
+        if (!clipboardManager.hasPrimaryClip())
+            return null;
+        ClipData clipData = clipboardManager.getPrimaryClip();
+
+        if (clipData.getItemCount() > 0) {
+            CharSequence text = clipData.getItemAt(0).getText();
+            return text;
+        }
+        return null;
+    }
+
+    public static void putTextIntoClipboard(Context context, CharSequence label,  CharSequence text) {
+        ClipboardManager clipboardManager = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+        //创建ClipData对象
+        ClipData clipData = ClipData.newPlainText(label, text);
+        //添加ClipData对象到剪切板中
+        clipboardManager.setPrimaryClip(clipData);
+    }
+
 }
