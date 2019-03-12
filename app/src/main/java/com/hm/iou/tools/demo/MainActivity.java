@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.hm.iou.tools.ClipUtil;
 import com.hm.iou.tools.ImageLoader;
 import com.hm.iou.tools.KeyboardUtil;
 import com.hm.iou.tools.MoneyFormatUtil;
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn_test2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ToastUtil.showStatusView(MainActivity.this, "加载成功", true);
+                ToastUtil.showStatusView(MainActivity.this, "加载成功");
             }
         });
 
@@ -106,5 +107,22 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        findViewById(R.id.btn_clip1).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CharSequence txt = ClipUtil.getTextFromClipboard(MainActivity.this);
+                System.out.println("剪切板内容：" + txt);
+            }
+        });
+
+        findViewById(R.id.btn_clip2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ClipUtil.putTextIntoClipboard(MainActivity.this, "", "这是来自剪切板:" + (i++));
+            }
+        });
+
     }
+
+    int i = 0;
 }

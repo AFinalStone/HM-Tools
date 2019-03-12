@@ -67,6 +67,7 @@ public class ToastUtil {
             mToast = null;
         }
         mToast = Toast.makeText(context.getApplicationContext(), text, Toast.LENGTH_LONG);
+        mToast.setGravity(Gravity.CENTER, 0, 0);
         mHandler.postDelayed(mPendingDismissRunnable, duration);
         mToast.show();
     }
@@ -83,10 +84,10 @@ public class ToastUtil {
         if (TextUtils.isEmpty(text)) return;
         if (null != mToast) {
             mToast.setText(text);
-            mToast.setGravity(Gravity.BOTTOM, 0, 100);
+            mToast.setGravity(Gravity.CENTER, 0, 0);
         } else {
             mToast = Toast.makeText(context.getApplicationContext(), text, duration);
-            mToast.setGravity(Gravity.BOTTOM, 0, 100);
+            mToast.setGravity(Gravity.CENTER, 0, 0);
         }
         mToast.show();
     }
@@ -114,13 +115,12 @@ public class ToastUtil {
     }
 
     /**
-     * 显示带有成功或者失败图片的toast
+     * 显示带有成功图片的toast
      *
      * @param context
      * @param message   toast文本
-     * @param isSuccess 成功或者失败
      */
-    public static void showStatusView(Context context, String message, boolean isSuccess) {
-        showMessageWithImage(context, message, isSuccess ? R.mipmap.tools_ic_toast_success : R.mipmap.tools_ic_toast_error);
+    public static void showStatusView(Context context, String message) {
+        showMessageWithImage(context, message, R.mipmap.tools_ic_toast_success);
     }
 }

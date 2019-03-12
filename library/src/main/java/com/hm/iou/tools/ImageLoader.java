@@ -1,6 +1,8 @@
 package com.hm.iou.tools;
 
+import android.content.ContentResolver;
 import android.content.Context;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.text.TextUtils;
 import android.widget.ImageView;
@@ -17,10 +19,6 @@ import java.io.File;
 public class ImageLoader {
 
     private static ImageLoader INSTANCE;
-
-    //为了加载本地drawable和mipmap目录下面的资源
-    public static final String ANDROID_RESOURCE = "android.resource://";
-    public static final String FOREWARD_SLASH = "/";
 
     private Picasso picasso;
 
@@ -109,9 +107,34 @@ public class ImageLoader {
         picasso.load(resId).placeholder(placeholderResId).error(errorResId).into(imageView);
     }
 
-    private Uri resourceIdToUri(Context context, int resourceId) {
-        return Uri.parse(ANDROID_RESOURCE + context.getPackageName()
-                + FOREWARD_SLASH + resourceId);
+    /**
+     * 把res下面的资源文件id转换成对应的uri
+     * res/drawable(mipmap)/xxx.png::::uri－－－－>url
+     *
+     * @param context
+     * @param resourceId
+     * @return android.resource://com.hm.iou.demo/2131427368
+     */
+    public Uri resourceIdToUri(Context context, int resourceId) {
+        return Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + context.getPackageName()
+                + "/" + resourceId);
+    }
+
+    /**
+     * 把res下面的资源文件名称转换成对应的uri
+     * res/drawable(mipmap)/xxx.png::::uri－－－－>url
+     *
+     * @return android.resource://com.hm.iou.demo/mipmap/jietiao_ic_home_top_search
+     */
+    public Uri resourceNameToUri(Context context, int resId) {
+
+        Resources r = context.getResources();
+        Uri uri = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://"
+                + r.getResourcePackageName(resId) + "/"
+                + r.getResourceTypeName(resId) + "/"
+                + r.getResourceEntryName(resId));
+
+        return uri;
     }
 
     public void fetchImage(String imageUrl) {
