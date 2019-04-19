@@ -40,18 +40,24 @@ public class ImageLoader {
     public void displayImage(String imageUrl, ImageView imageView) {
         if (!TextUtils.isEmpty(imageUrl)) {
             picasso.load(imageUrl).into(imageView);
+        } else {
+            imageView.setImageResource(0);
         }
     }
 
     public void displayImage(String imageUrl, ImageView imageView, int placeholderResId, int errorResId) {
         if (!TextUtils.isEmpty(imageUrl)) {
             picasso.load(imageUrl).placeholder(placeholderResId).error(errorResId).into(imageView);
+        } else {
+            imageView.setImageResource(errorResId);
         }
     }
 
     public void displayImage(String imageUrl, ImageView imageView, int errorResId) {
         if (!TextUtils.isEmpty(imageUrl)) {
             picasso.load(imageUrl).error(errorResId).into(imageView);
+        } else {
+            imageView.setImageResource(errorResId);
         }
     }
 
@@ -66,12 +72,16 @@ public class ImageLoader {
     public void displayImage(String imageUrl, ImageView imageView, int placeholderResId, int errorResId, Callback callback) {
         if (!TextUtils.isEmpty(imageUrl)) {
             picasso.load(imageUrl).placeholder(placeholderResId).error(errorResId).into(imageView, callback);
+        } else {
+            imageView.setImageResource(errorResId);
         }
     }
 
     public void displayImage(String imageUrl, ImageView imageView, int placeholderResId, int errorResId, Transformation transformation) {
         if (!TextUtils.isEmpty(imageUrl)) {
             picasso.load(imageUrl).transform(transformation).placeholder(placeholderResId).error(errorResId).into(imageView);
+        } else {
+            imageView.setImageResource(errorResId);
         }
     }
 
