@@ -3,6 +3,7 @@ package com.hm.iou.tools;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.text.TextUtils;
 import android.widget.ImageView;
@@ -12,6 +13,7 @@ import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 
 import java.io.File;
+import java.io.IOException;
 
 /**
  * Created by SHI on 2016/9/10 15:36
@@ -151,6 +153,24 @@ public class ImageLoader {
         if (!TextUtils.isEmpty(imageUrl)) {
             picasso.load(imageUrl).fetch();
         }
+    }
+
+    /**
+     * 获取图片的Bitmap文件
+     *
+     * @param imageUrl
+     * @return
+     */
+    public Bitmap getImageBitmap(String imageUrl) {
+        Bitmap imageBitmap = null;
+        if (!TextUtils.isEmpty(imageUrl)) {
+            try {
+                imageBitmap = picasso.load(imageUrl).get();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return imageBitmap;
     }
 
     public void fetchImage(String imageUrl, Callback callback) {
