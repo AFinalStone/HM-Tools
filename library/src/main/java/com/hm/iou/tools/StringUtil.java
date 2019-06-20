@@ -90,11 +90,19 @@ public class StringUtil {
     }
 
     /**
-     * 将浮点型数字按照pattern的格式转换成字符串
+     * 将浮点型数字按照保留两位小数的格式转换成字符串
      **/
     public static String doubleToString(Double doubleNum) {
         DecimalFormat dcmFmt = new DecimalFormat("0.00");
         return dcmFmt.format(doubleNum);
+    }
+
+    /**
+     * 将浮点型数字转换成字符串，如果有小数则显示小数，小数部分为零，则不显示小数点和小数部分
+     **/
+    public static String doubleToString01(Double doubleNum) {
+        DecimalFormat df = new DecimalFormat("###.####");
+        return df.format(doubleNum);
     }
 
     /**

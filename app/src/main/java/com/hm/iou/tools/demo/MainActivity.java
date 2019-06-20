@@ -12,6 +12,7 @@ import com.hm.iou.tools.ImageLoader;
 import com.hm.iou.tools.KeyboardUtil;
 import com.hm.iou.tools.MoneyFormatUtil;
 import com.hm.iou.tools.StatusBarUtil;
+import com.hm.iou.tools.StringUtil;
 import com.hm.iou.tools.ToastUtil;
 import com.hm.iou.tools.ViewConcurrencyUtil;
 
@@ -19,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     EditText mEtAmount;
     EditText mEtFToY;
+    int i = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,8 +123,11 @@ public class MainActivity extends AppCompatActivity {
                 ClipUtil.putTextIntoClipboard(MainActivity.this, "", "这是来自剪切板:" + (i++));
             }
         });
-
+        //浮点型格式化
+        double f = 20.0f;
+        System.out.println("你不想要的：" + f);
+        System.out.println("显示小数点后面两位小数：" + StringUtil.doubleToString(f));
+        System.out.println("不显示小数点以及后面的小数：" + StringUtil.doubleToString01(f));
     }
 
-    int i = 0;
 }
