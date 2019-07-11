@@ -46,7 +46,7 @@
         <ImageView
             android:id="@+id/iv_tools"
             android:layout_width="wrap_content"
-            android:layout_height="80dp" />
+            android:layout_height="40dp" />
 
         <EditText
             android:id="@+id/et_test_fToY"
@@ -90,6 +90,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="设置剪切板内容" />
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="KT通过委托来获取传递参数"
+            android:onClick="testKtDelegate"
+            />
 
     </LinearLayout>
 </ScrollView>
