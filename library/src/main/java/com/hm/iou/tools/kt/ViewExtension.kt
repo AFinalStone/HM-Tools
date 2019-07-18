@@ -52,18 +52,18 @@ fun <T : View> T.isGone(): Boolean = this.visibility == View.GONE
  * 记录View的点击事件戳
  */
 private var <T : View> T.lastClickTime: Long
-    get() = getTag(0x7F000001 + 1) as? Long ?: 0
+    get() = getTag(0x7FFF0002) as? Long ?: 0
     set(value) {
-        setTag(0x7F000001 + 1, value)
+        setTag(0x7FFF0002, value)
     }
 
 /**
  * 允许2次点击的间隔事件
  */
 private var <T : View> T.delayTime: Long
-    get() = getTag(0x7F000001 + 2) as? Long ?: 0
+    get() = getTag(0x7FFF0001) as? Long ?: 0
     set(value) {
-        setTag(0x7F000000 + 2, value)
+        setTag(0x7FFF0001, value)
     }
 
 private fun <T : View> T.canClick(): Boolean {
