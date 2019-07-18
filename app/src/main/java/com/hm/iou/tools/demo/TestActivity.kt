@@ -18,9 +18,6 @@ class TestActivity : AppCompatActivity() {
             println("click...click...")
             testClick(btn_test1)
         }
-        btn_test2.clickWithDuration {
-            println("点击测试")
-        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
