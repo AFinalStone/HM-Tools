@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.hm.iou.tools.kt.clickWithDuration
-import com.hm.iou.tools.kt.put
 import com.hm.iou.tools.kt.startActivityForResult
 import kotlinx.android.synthetic.main.activity_test1.*
 
@@ -17,6 +16,10 @@ class TestActivity : AppCompatActivity() {
 
         btn_test1.clickWithDuration(1000) {
             println("click...click...")
+            testClick(btn_test1)
+        }
+        btn_test2.clickWithDuration {
+            println("点击测试")
         }
     }
 
@@ -30,7 +33,7 @@ class TestActivity : AppCompatActivity() {
 
         var s: Long? = null
 
-        println(s as? Long)
+        println(s)
     }
 
     fun testClick2(v: View) {
@@ -41,7 +44,7 @@ class TestActivity : AppCompatActivity() {
         var intList = ArrayList<Int>()
         intList.add(111)
         intList.add(222)
-        startActivityForResult<TestActivity2>(100,"key1" to "value1", "key2" to "value2",
+        startActivityForResult<TestActivity2>(100, "key1" to "value1", "key2" to "value2",
                 "ss1" to list,
                 "ss2" to intList,
                 "ss3" to arrayOf("sss", "sss", "sss"))
