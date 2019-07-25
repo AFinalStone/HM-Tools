@@ -68,7 +68,7 @@ inline fun <reified T : Activity> Activity.startActivityForResult(reqCode: Int, 
 /**
  * Kt里启动 Activity 的简写方式
  */
-inline fun <reified T : Activity> Activity.startActivityForResult(reqCode: Int, vararg extras: Pair<String, Any>) {
+inline fun <reified T : Activity> Activity.startActivityForResult(reqCode: Int, vararg extras: Pair<String, Any?>) {
     val bundle = Bundle()
     bundle.put(extras)
     startActivityForResult<T>(reqCode, bundle)

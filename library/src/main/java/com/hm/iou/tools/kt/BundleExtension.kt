@@ -9,11 +9,12 @@ import java.io.Serializable
  * 便捷的包装Bundle的方法
  */
 
-fun Bundle.put(params: Array<out Pair<String, Any>>?): Bundle {
+fun Bundle.put(params: Array<out Pair<String, Any?>>?): Bundle {
     params?.forEach {
         val key = it.first
         val value = it.second
         when (value) {
+            null -> Unit
             is Byte -> putByte(key, value)
             is ByteArray -> putByteArray(key, value)
             is Boolean -> putBoolean(key, value)
@@ -59,8 +60,8 @@ fun Bundle.put(params: Array<out Pair<String, Any>>?): Bundle {
  * 简化bundle的传值方式
  */
 fun Bundle.putValue(key: String?, value: Any?): Bundle {
-
     when (value) {
+        null -> Unit
         is Byte -> putByte(key, value)
         is ByteArray -> putByteArray(key, value)
         is Boolean -> putBoolean(key, value)
