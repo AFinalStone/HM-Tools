@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.hm.iou.tools.kt.extraDelegate
 import com.hm.iou.tools.kt.getValue
-import com.hm.iou.tools.kt.put
 import com.hm.iou.tools.kt.putValue
 
 class TestActivity2 : AppCompatActivity() {
