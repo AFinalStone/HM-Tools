@@ -130,4 +130,8 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("不显示小数点以及后面的小数：" + StringUtil.doubleToString01(f));
     }
 
+    public void testKtDelegate(View v) {
+        startActivity(new Intent(this, TestActivity.class));
+    }
+
 }
