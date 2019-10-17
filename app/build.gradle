@@ -10,6 +10,8 @@ android {
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -17,6 +19,23 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+
+
+    //移除lint检测的error
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
+    //解决包大小超过64k的限制问题，对app进行分dex处理
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+
+    //兼容kotlin
+    packagingOptions {
+        exclude 'META-INF/library_release.kotlin_module'
     }
 }
 
@@ -28,7 +47,10 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
-    compile project(':library')
+    //解决包大小超过64k的限制问题，对app进行分dex处理
+    api "com.android.support:multidex:1.0.0"
+    api 'com.heima.iou:hmbasebizlocal:1.0.0'
+    api project(':library')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 repositories {
