@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import com.hm.iou.base.mvp.BaseContract
+import com.hm.iou.base.mvp.MvpActivityPresenter
 import com.hm.iou.tools.kt.clickWithDuration
 import com.hm.iou.tools.kt.startActivityForResult
 import kotlinx.android.synthetic.main.activity_test1.*
@@ -41,7 +43,7 @@ class TestActivity : AppCompatActivity() {
         var intList = ArrayList<Int>()
         intList.add(111)
         intList.add(222)
-        startActivityForResult<TestActivity2>(100, "key1" to "value1", "key2" to "value2",
+        startActivityForResult<TestActivity2<MvpActivityPresenter<BaseContract.BaseView>>>(100, "key1" to "value1", "key2" to "value2",
                 "ss1" to list,
                 "ss2" to intList,
                 "ss3" to arrayOf("sss", "sss", "sss"))
@@ -51,7 +53,7 @@ class TestActivity : AppCompatActivity() {
         val data = Bundle()
         data.putString("key1", "value1")
         data.putString("key2", "value2")
-        startActivityForResult<TestActivity2>(100, data)
+        startActivityForResult<TestActivity3>(100, data)
     }
 
 }
